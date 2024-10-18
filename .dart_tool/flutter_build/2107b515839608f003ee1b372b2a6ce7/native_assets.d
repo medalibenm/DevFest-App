@@ -1,0 +1,1 @@
+ C:\\Users\\alilo\\OneDrive\\Documents\\GitHub\\DevFest-APP\\.dart_tool\\flutter_build\\2107b515839608f003ee1b372b2a6ce7\\native_assets.yaml: 

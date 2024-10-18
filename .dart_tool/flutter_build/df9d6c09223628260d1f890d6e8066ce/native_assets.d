@@ -1,0 +1,1 @@
+ C:\\Users\\alilo\\OneDrive\\Documents\\FlutterFolder\\Auth\ challenge\\auth_chall\\.dart_tool\\flutter_build\\df9d6c09223628260d1f890d6e8066ce\\native_assets.yaml: 
