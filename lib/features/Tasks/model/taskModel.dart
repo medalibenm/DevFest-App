@@ -18,8 +18,8 @@ class Taskmodel {
 
   factory Taskmodel.FormJson(Map<String, dynamic> json) {
     return Taskmodel(
-        id: json['id'],
-        userID: json['User_id'],
+        id: json['id'].toString(),
+        userID: json['User_id']['id'].toString(),
         taskName: json['task_id']['task_name'],
         taskDescp: json['task_id']['task_description'],
         taskDeadline: json['task_id']['task_deadline'],

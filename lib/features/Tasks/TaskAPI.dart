@@ -10,9 +10,8 @@ class ApiTask {
   final String baseUrl = Tapi.baseurl;
 
   Future<List<Taskmodel>?> TaskFunction() async {
-    print(auth.activeUser?.id);
-    final response =
-        await http.get(Uri.parse('$baseUrl/api/tasks/${auth.activeUser?.id}'));
+    final id = await auth.getUserID();
+    final response = await http.get(Uri.parse('$baseUrl/api/tasks/1'));
     if (response.statusCode == 200) {
       final body = jsonDecode(response.body) as List;
       return body.map((e) => Taskmodel.FormJson(e)).toList();

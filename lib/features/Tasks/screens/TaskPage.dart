@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_therapist/features/Tasks/TaskAPI.dart';
+import 'package:my_therapist/features/Tasks/model/taskModel.dart';
 import '../../../features/Tasks/controller/task_controller.dart';
 import '../../../features/Tasks/screens/widgets/title_picture.dart';
 import '../../../utils/helpers/helper_functions.dart';
@@ -14,47 +16,63 @@ class TaskPage extends StatelessWidget {
     return Scaffold(
         body: Padding(
       padding: const EdgeInsets.all(18.0),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 15,
+      child: ListView(
+        children: [
+          SizedBox(
+            height: 15,
+          ),
+          TitlePicture(),
+          SizedBox(
+            height: 20,
+          ),
+          Container(
+            height: 35,
+            child: ListView.builder(
+              itemCount: 4,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return TaskStatusContainer(
+                  title: statusList[index],
+                  color: colorList[index],
+                );
+              },
             ),
-            TitlePicture(),
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-              height: 35,
-              child: ListView.builder(
-                itemCount: 4,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return TaskStatusContainer(
-                    title: statusList[index],
-                    color: colorList[index],
-                  );
-                },
-              ),
-            ),
-            ElevatedButton(
-                onPressed: () => controller.LoadTasks(),
-                child: Text('Refresh')),
-            Expanded(
-              child: ListView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: controller.tasks?.length,
-                itemBuilder: (context, index) {
-                  var task = controller.tasks?[index];
-                  return Container(
-                    child: Text('${task?.taskName}'),
-                  );
-                },
-              ),
-            )
-          ],
-        ),
+          ),
+          SizedBox(
+            height: 30,
+          ),
+          Expanded(
+              child: FutureBuilder(
+                  future: ApiTask().TaskFunction(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    } else if (snapshot.hasError) {
+                      return Center(
+                        child: Text('error : ${snapshot.error}'),
+                      );
+                    } else if (snapshot.hasData) {
+                      controller.tasks = snapshot.data!;
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemCount: controller.tasks.length,
+                        itemBuilder: (context, index) {
+                          Taskmodel task = controller.tasks[index];
+                          return Container(
+                            child: Center(child: Text(task.taskType)),
+                          );
+                        },
+                      );
+                    } else {
+                      return Center(
+                        child: Text('No data'),
+                      );
+                    }
+                  }))
+        ],
       ),
     ));
   }
