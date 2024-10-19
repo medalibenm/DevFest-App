@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'model/user_model.dart';
 
 class ApiService {
-  static const baseUrl = 'https://fa11-105-98-195-147.ngrok-free.app';
+  static const baseUrl = 'https://9212-105-101-199-138.ngrok-free.app';
 
   Future<UserModel?> login(String username, String password) async {
     final response = await http.post(
@@ -11,23 +11,25 @@ class ApiService {
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({'username': username, 'password': password}),
     );
-    final body = jsonDecode(response.body);
     if (response.statusCode == 200) {
+      final body = jsonDecode(response.body);
       return UserModel.formJson(body);
     } else {
       return null;
     }
   }
 
-  Future<UserModel?> register(String email, String password) async {
+  Future<UserModel?> register(
+      String username, String password, String email) async {
     final response = await http.post(
-      Uri.parse('$baseUrl/api/register'),
+      Uri.parse('$baseUrl/api/register/'),
       headers: {'Content-Type': 'application/json'},
-      body: jsonEncode({'email': email, 'password': password}),
+      body: jsonEncode(
+          {'username': username, 'email': email, "password": password}),
     );
-    final body = jsonDecode(response.body);
     if (response.statusCode == 200) {
-      return UserModel.formJson(body);
+      final body = jsonDecode(response.body);
+      return UserModel.registerJson(body['user']);
     } else {
       return null;
     }

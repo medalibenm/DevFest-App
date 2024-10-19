@@ -1,1 +1,0 @@
- C:\\Users\\alilo\\OneDrive\\Documents\\FlutterFolder\\Boiler-Plate\\my_therapist\\.dart_tool\\flutter_build\\ef704ab89e2b0702da7eec73d5296bcf\\native_assets.yaml: 

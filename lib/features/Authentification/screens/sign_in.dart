@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:my_therapist/features/Authentification/controller/signin_controller.dart';
+import 'package:my_therapist/features/Authentification/screens/register.dart';
 import 'package:my_therapist/features/Authentification/screens/widgets/social.dart';
 import 'package:my_therapist/utils/constants/colors.dart';
 import 'package:my_therapist/utils/constants/sizes.dart';
@@ -55,10 +57,21 @@ class signInScreen extends StatelessWidget {
                       SizedBox(
                         height: TSizes.spaceBtwItems * 1.5,
                       ),
-                      TextFormField(
-                        controller: controller.password,
-                        decoration: InputDecoration(
-                          labelText: '   Password',
+                      Obx(
+                        () => TextFormField(
+                          controller: controller.password,
+                          obscureText: controller.passwordEye.value,
+                          decoration: InputDecoration(
+                              labelText: '   Password',
+                              suffixIcon: IconButton(
+                                onPressed: () {
+                                  controller.passwordEye.value =
+                                      !controller.passwordEye.value;
+                                },
+                                icon: controller.passwordEye.value
+                                    ? Icon(Iconsax.eye_slash)
+                                    : Icon(Iconsax.eye),
+                              )),
                         ),
                       ),
                       SizedBox(
@@ -91,13 +104,15 @@ class signInScreen extends StatelessWidget {
                       SizedBox(
                         width: double.infinity,
                         child: TextButton(
-                          onPressed: () {},
-                          child: Text('Forgot your password?',
+                          onPressed: () {
+                            Get.offAll(() => RegisterScreen());
+                          },
+                          child: Text('Dont have an account ?',
                               style: Theme.of(context).textTheme.bodySmall),
                         ),
                       ),
                       SizedBox(
-                        height: TSizes.spaceBtwSections * 1.5,
+                        height: TSizes.spaceBtwSections * 1,
                       ),
                       Text(
                         'Or continue with',
