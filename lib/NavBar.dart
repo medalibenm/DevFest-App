@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:my_therapist/features/Tasks/screens/Notif.dart';
+import 'package:my_therapist/features/profile/screens/profilePage.dart';
 import '../../features/Tasks/screens/TaskPage.dart';
 
 class Navigationbar extends StatelessWidget {
@@ -38,8 +39,6 @@ class NavigationController extends GetxController {
   final screens = [
     TaskPage(),
     NotifPage(),
-    Container(
-      color: Colors.red,
-    ),
+    Profilepage(),
   ];
 }
