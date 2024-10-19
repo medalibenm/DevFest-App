@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TitlePicture extends StatelessWidget {
   const TitlePicture({
@@ -7,18 +8,22 @@ class TitlePicture extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Task Management',
-          style: Theme.of(context).textTheme.headlineMedium,
+        Image.asset('assets/logos/Logo.png'),
+        SizedBox(
+          height: 10,
         ),
-        CircleAvatar(
-          child: Icon(
-            Icons.person,
-            size: 30,
-          ),
+        Text(
+          'Hello,',
+          style:
+              GoogleFonts.urbanist(fontWeight: FontWeight.w700, fontSize: 20),
+        ),
+        Text(
+          'Mr Meziane Redouane',
+          style:
+              GoogleFonts.urbanist(fontWeight: FontWeight.w500, fontSize: 16),
         ),
       ],
     );

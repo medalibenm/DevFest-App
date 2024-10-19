@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:my_therapist/features/Tasks/TaskAPI.dart';
 import 'package:my_therapist/features/Tasks/model/taskModel.dart';
+import 'package:my_therapist/features/Tasks/screens/widgets/task_box.dart';
+import 'package:my_therapist/features/Tasks/screens/widgets/task_status_container.dart';
+import 'package:my_therapist/features/Tasks/screens/widgets/warning_message.dart';
+import 'package:my_therapist/utils/constants/colors.dart';
 import '../../../features/Tasks/controller/task_controller.dart';
 import '../../../features/Tasks/screens/widgets/title_picture.dart';
 import '../../../utils/helpers/helper_functions.dart';
+import 'package:getwidget/getwidget.dart';
 
 class TaskPage extends StatelessWidget {
   @override
@@ -25,6 +31,10 @@ class TaskPage extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
+          WarningMessage(),
+          SizedBox(
+            height: 30,
+          ),
           Container(
             height: 35,
             child: ListView.builder(
@@ -39,7 +49,7 @@ class TaskPage extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 30,
+            height: 15,
           ),
           Expanded(
               child: FutureBuilder(
@@ -61,8 +71,14 @@ class TaskPage extends StatelessWidget {
                         itemCount: controller.tasks.length,
                         itemBuilder: (context, index) {
                           Taskmodel task = controller.tasks[index];
-                          return Container(
-                            child: Center(child: Text(task.taskType)),
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: 22.0),
+                            child: TaskBox(
+                                name: task.taskName,
+                                type: task.taskType,
+                                state: task.taskState,
+                                description: task.taskDescp,
+                                deadline: task.taskDeadline),
                           );
                         },
                       );
@@ -71,51 +87,9 @@ class TaskPage extends StatelessWidget {
                         child: Text('No data'),
                       );
                     }
-                  }))
+                  })),
         ],
       ),
     ));
-  }
-}
-
-class TaskStatusContainer extends StatelessWidget {
-  const TaskStatusContainer({
-    super.key,
-    this.title,
-    this.color,
-  });
-  final title;
-  final color;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 8),
-      margin: EdgeInsets.only(right: 2),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: Color(0xffD6D6D6), width: 2),
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 15,
-            decoration: BoxDecoration(
-                color: THelperFunctions.getColor(color),
-                shape: BoxShape.circle),
-          ),
-          SizedBox(
-            width: 10,
-          ),
-          Text(
-            title,
-            style: GoogleFonts.urbanist(
-                color: Color(0xff171950),
-                fontSize: 15,
-                fontWeight: FontWeight.w600),
-          ),
-        ],
-      ),
-    );
   }
 }
