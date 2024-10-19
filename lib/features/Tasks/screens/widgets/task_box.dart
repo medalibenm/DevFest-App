@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:my_therapist/features/Tasks/screens/widgets/dropdown_example.dart';
 import 'package:my_therapist/utils/constants/colors.dart';
 
 class TaskBox extends StatelessWidget {
@@ -22,7 +23,7 @@ class TaskBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 360,
-      height: 280,
+      height: 300,
       decoration: BoxDecoration(
           color: TColors.white,
           border: Border.all(color: Colors.grey, width: 1)),
@@ -76,18 +77,8 @@ class TaskBox extends StatelessWidget {
                 SizedBox(
                   width: 15,
                 ),
-                Container(
-                  height: 25,
-                  width: 100,
-                  decoration: BoxDecoration(
-                      color: Colors.orange.withOpacity(0.5),
-                      border: Border.all(color: Colors.orange)),
-                  child: Center(
-                    child: Text(
-                      state,
-                      style: GoogleFonts.urbanist(fontSize: 15),
-                    ),
-                  ),
+                DropdownExample(
+                  status: state,
                 ),
               ],
             ),

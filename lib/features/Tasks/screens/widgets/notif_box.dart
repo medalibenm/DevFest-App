@@ -12,7 +12,7 @@ class NotifBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 360,
-      height: 315,
+      height: 335,
       decoration: BoxDecoration(
           color: TColors.white,
           border: Border.all(color: Colors.grey, width: 1)),
@@ -39,7 +39,7 @@ class NotifBox extends StatelessWidget {
                   width: 10,
                 ),
                 Container(
-                  width: 270,
+                  width: 245,
                   child: Text(
                     'Machine temperature reached 85°C. Cooling system check required.',
                     softWrap: true,
@@ -49,6 +49,10 @@ class NotifBox extends StatelessWidget {
                         fontWeight: FontWeight.w500),
                   ),
                 ),
+                SizedBox(
+                  width: 2,
+                ),
+                Icon(Iconsax.arrow_up_2)
               ],
             ),
             SizedBox(
@@ -194,8 +198,7 @@ class NotifBox extends StatelessWidget {
                   child: OutlinedButton(
                       style: OutlinedButton.styleFrom(
                         side: BorderSide(
-                          color: Color(
-                              0xff0E43FB), // Change border color
+                          color: Color(0xff0E43FB), // Change border color
                           width: 1, // Change border width
                         ),
                       ),
@@ -213,8 +216,7 @@ class NotifBox extends StatelessWidget {
                           Text(
                             'Mark as read',
                             style: GoogleFonts.urbanist(
-                                fontSize: 13,
-                                fontWeight: FontWeight.w500),
+                                fontSize: 13, fontWeight: FontWeight.w500),
                           ),
                         ],
                       )),

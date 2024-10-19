@@ -33,7 +33,17 @@ class NotifPage extends StatelessWidget {
               SizedBox(
                 height: 15,
               ),
-              NotifBox(),
+              ListTile(
+                title: Text('Machine Temperature'),
+                trailing: Icon(Iconsax.arrow_down_1),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              ListTile(
+                title: Text('Machine Temperature'),
+                trailing: Icon(Iconsax.arrow_down_1),
+              ),
             ],
           ),
         ),
