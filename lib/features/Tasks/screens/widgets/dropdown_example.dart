@@ -11,10 +11,10 @@ class DropdownExample extends StatefulWidget {
 }
 
 class _DropdownExampleState extends State<DropdownExample> {
-  String selectedValue = 'pending';
   // Initial value for the dropdown
   @override
   Widget build(BuildContext context) {
+    String selectedValue = widget.status;
     return DropdownButton<String>(
         value: selectedValue, // The current selected value
         onChanged: (String? newValue) {
