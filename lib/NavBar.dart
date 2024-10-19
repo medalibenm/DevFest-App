@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:my_therapist/features/Tasks/screens/Notif.dart';
 import '../../features/Tasks/screens/TaskPage.dart';
 
 class Navigationbar extends StatelessWidget {
@@ -19,8 +20,9 @@ class Navigationbar extends StatelessWidget {
             controller.selectedIndex.value = index;
           },
           destinations: const [
+            NavigationDestination(icon: Icon(Iconsax.home), label: 'Home'),
             NavigationDestination(
-                icon: Icon(Iconsax.task_square), label: 'Tasks'),
+                icon: Icon(Iconsax.notification), label: 'Notifications'),
             NavigationDestination(icon: Icon(Iconsax.user), label: 'Profile'),
           ],
         ),
@@ -35,8 +37,9 @@ class NavigationController extends GetxController {
 
   final screens = [
     TaskPage(),
+    NotifPage(),
     Container(
-      color: Colors.pink,
+      color: Colors.red,
     ),
   ];
 }

@@ -4,8 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:my_therapist/features/Tasks/TaskAPI.dart';
 import 'package:my_therapist/features/Tasks/model/taskModel.dart';
+import 'package:my_therapist/features/Tasks/screens/widgets/filter_row.dart';
 import 'package:my_therapist/features/Tasks/screens/widgets/task_box.dart';
-import 'package:my_therapist/features/Tasks/screens/widgets/task_status_container.dart';
 import 'package:my_therapist/features/Tasks/screens/widgets/warning_message.dart';
 import 'package:my_therapist/utils/constants/colors.dart';
 import '../../../features/Tasks/controller/task_controller.dart';
@@ -35,19 +35,7 @@ class TaskPage extends StatelessWidget {
           SizedBox(
             height: 30,
           ),
-          Container(
-            height: 35,
-            child: ListView.builder(
-              itemCount: 4,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                return TaskStatusContainer(
-                  title: statusList[index],
-                  color: colorList[index],
-                );
-              },
-            ),
-          ),
+          FilterRow(),
           SizedBox(
             height: 15,
           ),
