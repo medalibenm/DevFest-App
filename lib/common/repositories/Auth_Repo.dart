@@ -1,28 +1,18 @@
-import 'dart:async';
 import 'package:get/get.dart';
+import '../../features/Authentification/model/user_model.dart';
 import '../../features/Authentification/Authapi.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../../features/Authentification/screens/login_register.dart';
 
 class AuthRepo extends GetxController {
   final FlutterSecureStorage storage = FlutterSecureStorage();
-  // var isLoggedIn = false.obs; // Observable variable to track login state
 
-  // @override
-  // void onInit() {
-  //   super.onInit();
-  //   checkIfTokenExists();
-  // }
-
-  // Future<void> checkIfTokenExists() async {
-  //   String? token = await storage.read(key: 'token');
-  //   isLoggedIn.value = token != null; // Update the observable value
-  // }
-
+  UserModel? activeUser;
   Future Login(String username, String password) async {
     final user = await ApiService().login(username, password);
     if (user != null && user.token.isNotEmpty) {
       await storage.write(key: 'token', value: user.token);
+      activeUser = user;
       return true;
     }
     return false;
@@ -46,6 +36,7 @@ class AuthRepo extends GetxController {
 
   Future<void> logout() async {
     await storage.delete(key: 'token');
+    activeUser = null;
     Get.offAll(() => loginRegister());
   }
 }

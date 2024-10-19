@@ -1,9 +1,10 @@
 import 'package:http/http.dart' as http;
+import 'package:my_therapist/utils/constants/api.dart';
 import 'dart:convert';
 import 'model/user_model.dart';
 
 class ApiService {
-  static const baseUrl = 'https://9212-105-101-199-138.ngrok-free.app';
+  final baseUrl = Tapi.baseurl;
 
   Future<UserModel?> login(String username, String password) async {
     final response = await http.post(

@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       theme: TAppTheme.lightTheme,
       darkTheme: TAppTheme.darkTheme,
-      home: !loggedIn ? Navigationbar() : loginRegister(),
+      home: loggedIn ? Navigationbar() : loginRegister(),
     );
   }
 }

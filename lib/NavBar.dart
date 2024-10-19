@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import '../../features/Tasks/screens/TaskPage.dart';
 
 class Navigationbar extends StatelessWidget {
   const Navigationbar({super.key});
@@ -18,7 +19,6 @@ class Navigationbar extends StatelessWidget {
             controller.selectedIndex.value = index;
           },
           destinations: const [
-            NavigationDestination(icon: Icon(Iconsax.home), label: 'Home'),
             NavigationDestination(
                 icon: Icon(Iconsax.task_square), label: 'Tasks'),
             NavigationDestination(icon: Icon(Iconsax.user), label: 'Profile'),
@@ -34,12 +34,7 @@ class NavigationController extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
 
   final screens = [
-    Container(
-      color: Colors.red,
-    ),
-    Container(
-      color: Colors.blue,
-    ),
+    TaskPage(),
     Container(
       color: Colors.pink,
     ),
